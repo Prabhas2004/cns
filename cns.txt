@@ -1,0 +1,23 @@
+# check_bandwidth.py
+import speedtest
+
+def test_bandwidth():
+    st = speedtest.Speedtest()
+
+    # Get a list of servers and select the best one
+    st.get_best_server()
+
+    print("Testing download speed...")
+    download_speed = st.download() / 1_000_000  # Convert from bits per second to megabits per second
+    print(f"Download speed: {download_speed:.2f} Mbps")
+
+    print("Testing upload speed...")
+    upload_speed = st.upload() / 1_000_000  # Convert from bits per second to megabits per second
+    print(f"Upload speed: {upload_speed:.2f} Mbps")
+
+    print("Testing ping...")
+    ping = st.results.ping
+    print(f"Ping: {ping} ms")
+
+if _name_ == "_main_":
+    test_bandwidth()
